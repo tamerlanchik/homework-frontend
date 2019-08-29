@@ -78,4 +78,23 @@ QUnit.module('Тестируем функцию format', function () {
 
 		assert.strictEqual(format(input, input.length), expected);
 	});
+
+	QUnit.test('format работает с пустым массивом', function (assert) {
+		const input = [];
+		const expected = '';
+		assert.strictEqual(format(input, 0), expected);
+		assert.strictEqual(format(input, 5), expected);
+	})
+
+	QUnit.test('format не падает от отрицательного числа колонок', function(assert) {
+		const input = [ 0, 1, 2, 10, 100, -100, 1000, 10000, -10000 ];
+		const expected = '';
+		assert.strictEqual(format(input, -3), expected);
+	})
+
+	QUnit.test('format работает при числе колонок больше, чем длина массива', function(assert) {
+		const input = [ 0, 1, 2, 10, 100, -100, 1000, 10000, -10000 ];
+		const expected = '0 1 2 10 100 -100 1000 10000 -10000';
+		assert.strictEqual(format(input, input.length + 13), expected);
+	})
 });

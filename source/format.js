@@ -1,4 +1,5 @@
 const format = (args, cols) => {
+    if(cols < 0) return '';
     args = args.map(currVal => String(currVal));
     let lens = new Array(cols).fill(0);
     for(let i = 0; i < args.length; ++i){
