@@ -1,13 +1,15 @@
 const format = (args, cols) => {
+    args = args.map(currVal => String(currVal));
     let lens = new Array(cols).fill(0);
-    let res = "";
     for(let i = 0; i < args.length; ++i){
-        lens[i % cols] = Math.max(lens[i % cols], String(args[i]).length);
+        lens[i % cols] = Math.max(lens[i % cols], args[i].length);
     }
-    for(let i = 0; i < args.length; ++i) {
-        if(i%cols != 0) res += ' ';
-        res +=' '.repeat(lens[i%cols] - String(args[i]).length) + args[i];
-        if(i%cols == cols-1 && i != args.length-1) res += '\n';
+
+    let table = []
+    for(let i = 0; i < args.length; i += cols) {
+        table.push(args.slice(i, i+cols).map(
+            (currVal, i) => ' '.repeat(lens[i % cols] - currVal.length) + currVal)
+            .join(' '));
     }
-    return res;
+    return table.join('\n');
 }
