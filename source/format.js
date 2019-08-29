@@ -5,11 +5,13 @@ const format = (args, cols) => {
         lens[i % cols] = Math.max(lens[i % cols], args[i].length);
     }
 
-    let table = []
+    let table = [];
     for(let i = 0; i < args.length; i += cols) {
-        table.push(args.slice(i, i+cols).map(
-            (currVal, i) => ' '.repeat(lens[i % cols] - currVal.length) + currVal)
-            .join(' '));
+        table.push(
+            args.slice(i, i+cols)
+            .map(   (currVal, j) => ' '.repeat(lens[j] - currVal.length) + currVal  )
+            .join(' ')
+        );
     }
     return table.join('\n');
 }
