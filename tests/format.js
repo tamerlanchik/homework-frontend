@@ -51,4 +51,31 @@ QUnit.module('Тестируем функцию format', function () {
 		assert.strictEqual(format(input, 2), expected2);
 		assert.strictEqual(format(input, 3), expected3);
 	});
+
+	QUnit.test('format работает правильно c неупорядоченными числами в нескольких колонках', function (assert) {
+		const input = [ 0, 1, -10000, -100, 2, 10, 100, 1000, 10000 ];
+
+		const expected2 =
+			'     0    1\n' +
+			'-10000 -100\n' +
+			'     2   10\n' +
+			'   100 1000\n' +
+			' 10000';
+
+		const expected3 =
+			'   0    1 -10000\n' +
+			'-100    2     10\n' +
+			' 100 1000  10000';
+
+		assert.strictEqual(format(input, 2), expected2);
+		assert.strictEqual(format(input, 3), expected3);
+	});
+
+	QUnit.test('format работает правильно c одной строкой', function (assert) {
+		const input = [ 0, 1, 2, 10, 100, -100, 1000, 10000, -10000 ];
+
+		const expected = '0 1 2 10 100 -100 1000 10000 -10000';
+
+		assert.strictEqual(format(input, input.length), expected);
+	});
 });
