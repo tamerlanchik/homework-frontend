@@ -12,7 +12,7 @@ const format = (args, cols) => {
     let columnWidth = new Array(cols).fill(0);
 
     //  Counting width of the columns
-    for (let i = 0; i < args.length; ++i){
+    for (let i = 0; i < args.length; ++i) {
         columnWidth[i % cols] = Math.max(columnWidth[i % cols], args[i].length);
     }
 
