@@ -97,4 +97,8 @@ QUnit.module('Тестируем функцию format', function () {
 		const expected = '0 1 2 10 100 -100 1000 10000 -10000';
 		assert.strictEqual(format(input, input.length + 13), expected);
 	})
+
+	QUnit.test('format работает при пустом вызове', function(assert) {
+		assert.strictEqual(format(), '');
+	})
 });
